@@ -12,14 +12,14 @@ import {
   AxiosError,
 } from './types';
 
+dotenv.config();
+
 const PORT = process.env.PORT;
 const OPEN_WEATHER_API_KEY = process.env.OPEN_WEATHER_API_KEY;
 const IPSTACK_API_KEY = process.env.IPSTACK_API_KEY;
 
-dotenv.config();
 
 const app = express();
-
 // Use the cors middleware
 app.use(cors());
 // Serve static files from the React app
