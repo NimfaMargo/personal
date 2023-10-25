@@ -1,0 +1,6 @@
+{
+  "extends": ["../.eslintrc.json"],
+  "rules": {
+    // Add any backend-specific rules here
+  }
+}

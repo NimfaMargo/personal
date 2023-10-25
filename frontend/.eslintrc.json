@@ -1,0 +1,12 @@
+{
+  "extends": ["../.eslintrc.json", "plugin:react/recommended"],
+  "plugins": ["react"],
+  "rules": {
+    "react/prop-types": "off" // Since TypeScript is used for type checking
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}
