@@ -3,7 +3,8 @@ import express, { Request, Response } from 'express';
 import path from 'path';
 import cors from 'cors';
 import axios from 'axios';
-import { handleAxiosError } from './utils/handleAxiosError';
+
+import { handleAxiosError, parseContent } from './utils';
 import {
   GeoResponse,
   WeatherResponse,
@@ -17,7 +18,7 @@ dotenv.config();
 const PORT = process.env.PORT;
 const OPEN_WEATHER_API_KEY = process.env.OPEN_WEATHER_API_KEY;
 const IPSTACK_API_KEY = process.env.IPSTACK_API_KEY;
-
+const GITHUB_USER = process.env.GITHUB_USER;
 
 const app = express();
 // Use the cors middleware
@@ -45,6 +46,25 @@ app.get('/api/current-weather', async (req: Request, res: Response) => {
     const apiError = axiosError.response?.data as IpstackError & OpenWeatherMapError;
     const errorData = apiError.success === false ? apiError.error : apiError;
     return handleAxiosError(errorData, res);
+  }
+});
+
+app.get('/api/fetch-content', async (req: Request, res: Response) => {
+  try {
+    const response = await axios.get(
+      'https://api.github.com/repos/sudheerj/javascript-interview-questions/contents/README.md',
+      {
+        headers: {
+          Accept: 'application/vnd.github.v3.raw	',
+          'User-Agent': GITHUB_USER,
+        },
+      },
+    );
+
+    const data = parseContent(response.data);
+    res.json(data);
+  } catch (error) {
+    return handleAxiosError(error, res);
   }
 });
 
