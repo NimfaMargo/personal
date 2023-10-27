@@ -1,0 +1,28 @@
+.weather {
+	display: flex;
+	flex-direction: column;
+	border: 1px solid #ddd;
+	padding: 20px;
+	width: 40svw;
+	align-items: flex-start;
+	background: url('../../images/sun\ and\ clouds.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.weather p {
+	margin-bottom: 10px;
+	/* Adding some space between paragraphs */
+}
+
+.weatherTitle {
+	font-size: 24px;
+	margin-bottom: 20px;
+}
+
+.weatherData_Location,
+.weatherData_Temperature,
+.weatherData_Condition {
+	margin: 2px;
+	font-size: 18px;
+}
